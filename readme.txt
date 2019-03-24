@@ -1,6 +1,7 @@
 === Theme Switcher ===
 Contributors: azurecurve
 Tags: themes, switching, theme, switcher, day, night, light, dark
+Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
 Donate link: https://development.azurecurve.co.uk/support-development/
 Requires at least: 1.0.0
 Tested up to: 1.0.0

@@ -28,10 +28,14 @@ To install the Theme Switcher plugin:
 * Activate the plugin.
 * Add the azurecurve Theme Switcher widget to one of your sidebars (select list/drop down and configure other parameters if required), or call azrcrv_ts_theme_switcher() directly.
 
+== Changelog ==
+Changes and feature additions for the Theme Switcher plugin:
+= 1.0.1 =
+* Update azurecurve menu for easier maintenance.
+* Move require of azurecurve menu below security check.
+= 1.0.0 =
+* First version for ClassicPress forked from azurecurve Theme Switcher which was forked from Theme Switcher.
+
 == Frequently Asked Questions ==
 = Is this plugin compatible with both WordPress and ClassicPress? =
 * Yes, this plugin will work with both.
-
-== Changelog ==
-Changes and feature additions for the Theme Switcher plugin:
-* First version for ClassicPress forked from azurecurve Theme Switcher which was forked from Theme Switcher.

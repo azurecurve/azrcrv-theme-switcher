@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher
@@ -24,6 +24,10 @@ if (!defined('ABSPATH')){
 
 // include plugin menu
 require_once(dirname( __FILE__).'/pluginmenu/menu.php');
+register_activation_hook(__FILE__, 'azrcrv_create_plugin_menu_ts');
+
+// include update client
+require_once(dirname(__FILE__).'/libraries/updateclient/UpdateClient.class.php');
 
 /**
  * Setup actions, filters and shortcodes
@@ -33,6 +37,18 @@ require_once(dirname( __FILE__).'/pluginmenu/menu.php');
  */
 // add actions
 add_action('admin_menu', 'azrcrv_ts_create_admin_menu');
+add_action('plugins_loaded', 'azrcrv_ts_load_languages');
+
+/**
+ * Load language files.
+ *
+ * @since 1.0.0
+ *
+ */
+function azrcrv_ts_load_languages() {
+    $plugin_rel_path = basename(dirname(__FILE__)).'/languages';
+    load_plugin_textdomain('azrcrv-ts', false, $plugin_rel_path);
+}
 
 /**
  * Add Theme Switcher menu to plugin menu
@@ -66,7 +82,7 @@ function azrcrv_ts_display_options(){
     }
 	?>
 	<div id="azrcrv-ts-general" class="wrap">
-		<h2><?php echo esc_html(get_admin_page_title()); ?></h2>
+		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 		<p>
 			<?php esc_html_e('This plugin allows users to switch themese on the front-end on a per user setting. Configure plugin via the included widget.', 'theme-switcher'); ?>
 		</p>

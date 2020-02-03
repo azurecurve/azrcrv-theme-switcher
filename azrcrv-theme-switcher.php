@@ -37,18 +37,6 @@ require_once(dirname(__FILE__).'/libraries/updateclient/UpdateClient.class.php')
  */
 // add actions
 add_action('admin_menu', 'azrcrv_ts_create_admin_menu');
-add_action('plugins_loaded', 'azrcrv_ts_load_languages');
-
-/**
- * Load language files.
- *
- * @since 1.0.0
- *
- */
-function azrcrv_ts_load_languages() {
-    $plugin_rel_path = basename(dirname(__FILE__)).'/languages';
-    load_plugin_textdomain('azrcrv-ts', false, $plugin_rel_path);
-}
 
 /**
  * Add Theme Switcher menu to plugin menu

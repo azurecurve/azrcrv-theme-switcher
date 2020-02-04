@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.1.0
+ * Version: 1.1.2
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher

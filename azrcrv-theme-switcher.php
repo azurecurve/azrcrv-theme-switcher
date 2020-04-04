@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
@@ -38,6 +38,9 @@ require_once(dirname(__FILE__).'/libraries/updateclient/UpdateClient.class.php')
 // add actions
 add_action('admin_menu', 'azrcrv_ts_create_admin_menu');
 
+// add filters
+add_filter('plugin_action_links', 'azrcrv_ts_add_plugin_action_link', 10, 2);
+
 /**
  * Add Theme Switcher menu to plugin menu
  *
@@ -53,6 +56,27 @@ function azrcrv_ts_create_admin_menu(){
 						,'manage_options'
 						,"azrcrv-ts"
 						,"azrcrv_ts_display_options");
+}
+
+/**
+ * Add plugin action link on plugins page.
+ *
+ * @since 1.1.4
+ *
+ */
+function azrcrv_ts_add_plugin_action_link($links, $file){
+	static $this_plugin;
+
+	if (!$this_plugin){
+		$this_plugin = plugin_basename(__FILE__);
+	}
+
+	if ($file == $this_plugin){
+		$settings_link = '<a href="'.get_bloginfo('wpurl').'/wp-admin/admin.php?page=azrcrv-ts"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'theme-switcher').'</a>';
+		array_unshift($links, $settings_link);
+	}
+
+	return $links;
 }
 
 /**
@@ -147,7 +171,7 @@ function azrcrv_ts_set_default_options($networkwide){
  * @since 1.0.0
  *
  */
-class azrcrv_ts_ThemeSwitcherWidget extends WP_Widget {
+class azrcrv_ts_ThemeSwitcherWidgetClass extends WP_Widget {
 	/**
 	 * Return widget in widgets admin panel
 	 *
@@ -238,7 +262,7 @@ class azrcrv_ts_ThemeSwitcherWidget extends WP_Widget {
  * @since 1.0.0
  *
  */
-class azrcrv_ts_ThemeSwitcher {
+class azrcrv_ts_ThemeSwitcherClass {
 	
 	/**
 	 * Add actions and filters
@@ -435,7 +459,7 @@ class azrcrv_ts_ThemeSwitcher {
 	}
 }
 
-$theme_switcher = new azrcrv_ts_ThemeSwitcher();
+$theme_switcher = new azrcrv_ts_ThemeSwitcherClass();
 
 function azc_ts_theme_switcher($type = '')
 {

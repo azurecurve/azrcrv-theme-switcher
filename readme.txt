@@ -1,12 +1,12 @@
 === Theme Switcher ===
 
 Description:	Provide dark/light mode or other theme choices to your users.
-Version:		1.1.4
+Version:		1.1.5
 Tags:			themes, switching, theme, switcher, day, night, light, dark
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
-Download link:	https://github.com/azurecurve/azrcrv-theme-switcher/releases/download/v1.1.4/azrcrv-theme-switcher.zip
+Download link:	https://github.com/azurecurve/azrcrv-theme-switcher/releases/download/v1.1.5/azrcrv-theme-switcher.zip
 Donate link:	https://development.azurecurve.co.uk/support-development/
 Requires PHP:	5.6
 Requires:		1.0.0
@@ -54,6 +54,10 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 == Changelog ==
 
 # Changelog
+
+### [Version 1.1.5](https://github.com/azurecurve/azrcrv-theme-switcher/releases/tag/v1.1.5)
+ * Fix bug with plugin menu.
+ * Update plugin menu css.
 
 ### [Version 1.1.4](https://github.com/azurecurve/azrcrv-theme-switcher/releases/tag/v1.1.4)
  * Change class name to avoid clash with method name.

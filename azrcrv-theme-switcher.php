@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.1.5
+ * Version: 1.1.6
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
@@ -178,7 +178,7 @@ class azrcrv_ts_ThemeSwitcherWidgetClass extends WP_Widget {
 	 * @since 1.0.0
 	 *
 	 */
-	function azrcrv_ts_ThemeSwitcherWidget()
+	function __construct()
 	{
 		return $this->WP_Widget('azrcrv-ts', 'Theme Switcher by azurecurve', array('description' => esc_html__('A widget with options for switching themes.', 'theme-switcher')));
 	}
@@ -270,7 +270,7 @@ class azrcrv_ts_ThemeSwitcherClass {
 	 * @since 1.0.0
 	 *
 	 */
-	function azrcrv_ts_ThemeSwitcher()
+	public function init()
 	{
 		add_action('init', array(&$this, 'set_theme_cookie'));
 		add_action('widgets_init', array(&$this, 'event_widgets_init'));
@@ -287,7 +287,7 @@ class azrcrv_ts_ThemeSwitcherClass {
 	 */
 	function event_widgets_init()
 	{
-		register_widget('azrcrv_ts_ThemeSwitcherWidget');
+		register_widget('azrcrv_ts_ThemeSwitcherWidgetClass');
 	}
 	
 	/**
@@ -425,7 +425,7 @@ class azrcrv_ts_ThemeSwitcherClass {
 			wp_cache_set('themes-data', $theme_data, 'azrcrv-ts');
 		}
 	
-		$ts .= '';
+		$ts = '';
 		if ($style == 'dropdown'){
 			$ts .= '<div style="width: 90%; margin: auto; ">';
 			$ts .= '<select style="width: 100%;" name="themeswitcher" onchange="location.href=this.options[this.selectedIndex].value;">';
@@ -460,6 +460,7 @@ class azrcrv_ts_ThemeSwitcherClass {
 }
 
 $theme_switcher = new azrcrv_ts_ThemeSwitcherClass();
+$theme_switcher->init();
 
 function azc_ts_theme_switcher($type = '')
 {

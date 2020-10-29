@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.1.6
+ * Version: 1.2.0
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
@@ -40,6 +40,34 @@ add_action('admin_menu', 'azrcrv_ts_create_admin_menu');
 
 // add filters
 add_filter('plugin_action_links', 'azrcrv_ts_add_plugin_action_link', 10, 2);
+add_filter('codepotent_update_manager_image_path', 'azrcrv_ts_custom_image_path');
+add_filter('codepotent_update_manager_image_url', 'azrcrv_ts_custom_image_url');
+
+/**
+ * Custom plugin image path.
+ *
+ * @since 1.2.0
+ *
+ */
+function azrcrv_ts_custom_image_path($path){
+    if (strpos($path, 'azrcrv-theme-switcher') !== false){
+        $path = plugin_dir_path(__FILE__).'assets/pluginimages';
+    }
+    return $path;
+}
+
+/**
+ * Custom plugin image url.
+ *
+ * @since 1.2.0
+ *
+ */
+function azrcrv_ts_custom_image_url($url){
+    if (strpos($url, 'azrcrv-theme-switcher') !== false){
+        $url = plugin_dir_url(__FILE__).'assets/pluginimages';
+    }
+    return $url;
+}
 
 /**
  * Add Theme Switcher menu to plugin menu
@@ -72,7 +100,7 @@ function azrcrv_ts_add_plugin_action_link($links, $file){
 	}
 
 	if ($file == $this_plugin){
-		$settings_link = '<a href="'.get_bloginfo('wpurl').'/wp-admin/admin.php?page=azrcrv-ts"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'theme-switcher').'</a>';
+		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-ts').'"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'theme-switcher').'</a>';
 		array_unshift($links, $settings_link);
 	}
 

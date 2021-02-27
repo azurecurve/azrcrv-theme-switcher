@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
@@ -100,7 +100,7 @@ function azrcrv_ts_add_plugin_action_link($links, $file){
 	}
 
 	if ($file == $this_plugin){
-		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-ts').'"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'theme-switcher').'</a>';
+		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-ts').'"><img src="'.plugins_url('/pluginmenu/images/logo.svg', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'theme-switcher').'</a>';
 		array_unshift($links, $settings_link);
 	}
 
@@ -206,9 +206,12 @@ class azrcrv_ts_ThemeSwitcherWidgetClass extends WP_Widget {
 	 * @since 1.0.0
 	 *
 	 */
-	function __construct()
-	{
-		return $this->WP_Widget('azrcrv-ts', 'Theme Switcher by azurecurve', array('description' => esc_html__('A widget with options for switching themes.', 'theme-switcher')));
+	function __construct(){
+		// Widget creation function
+		parent::__construct('azrcrv-ts',
+							 'Theme Switcher by azurecurve',
+							 array('description' =>
+									esc_html__('A widget with options for switching themes', 'theme-switcher')));
 	}
 	
 	/**
@@ -246,12 +249,15 @@ class azrcrv_ts_ThemeSwitcherWidgetClass extends WP_Widget {
 	 */
 	function form($instance) 
 	{
-		$type = $instance['displaytype'];
+		$type = (isset($instance['displaytype']) ? $instance['displaytype'] : 'dropdown');
+		$title = (isset($instance['title']) ? $instance['title'] : '');
+		$prefix = (isset($instance['prefix']) ? $instance['prefix'] : '');
+		$with = (isset($instance['with']) ? $instance['with'] : '');
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>">
 				<span><?php esc_html_e('Title:', 'theme-switcher'); ?></span>
-				<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php echo esc_attr($instance['title']); ?>" />
+				<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
 			
@@ -271,13 +277,13 @@ class azrcrv_ts_ThemeSwitcherWidgetClass extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('prefix'); ?>">
 				<span><?php esc_html_e('Ignore themes with prefix:', 'theme-switcher'); ?></span>
-				<input type="text" name="<?php echo $this->get_field_name('prefix'); ?>" id="<?php echo $this->get_field_id('prefix'); ?>" value="<?php echo esc_attr($instance['prefix']); ?>" />
+				<input type="text" name="<?php echo $this->get_field_name('prefix'); ?>" id="<?php echo $this->get_field_id('prefix'); ?>" value="<?php echo esc_attr($prefix); ?>" />
 			</label>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('with'); ?>">
 				<span><?php esc_html_e('Only include themes with:', 'theme-switcher'); ?></span>
-				<input type="text" name="<?php echo $this->get_field_name('with'); ?>" id="<?php echo $this->get_field_id('with'); ?>" value="<?php echo esc_attr($instance['with']); ?>" />
+				<input type="text" name="<?php echo $this->get_field_name('with'); ?>" id="<?php echo $this->get_field_id('with'); ?>" value="<?php echo esc_attr($with); ?>" />
 			</label>
 		</p>
 		<?php

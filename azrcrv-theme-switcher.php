@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Theme Switcher
  * Description: Allows users to easily switch themes (ideal for allowing light/dark mode).
- * Version: 1.2.3
+ * Version: 1.2.4
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/
@@ -122,7 +122,12 @@ function azrcrv_ts_display_options(){
     }
 	?>
 	<div id="azrcrv-ts-general" class="wrap">
-		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+		<h1>
+			<?php
+				echo '<a href="https://development.azurecurve.co.uk/classicpress-plugins/"><img src="'.plugins_url('/pluginmenu/images/logo.svg', __FILE__).'" style="padding-right: 6px; height: 20px; width: 20px;" alt="azurecurve" /></a>';
+				esc_html_e(get_admin_page_title());
+			?>
+		</h1>
 		<p>
 			<?php esc_html_e('This plugin allows users to switch themese on the front-end on a per user setting. Configure plugin via the included widget.', 'theme-switcher'); ?>
 		</p>

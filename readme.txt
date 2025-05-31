@@ -37,6 +37,9 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 
 # Changelog
 
+### [Version 1.2.9](https://github.com/azurecurve/azrcrv-theme-switcher/releases/tag/v1.2.9)
+ * Update plugin header for compatibility with ClasssicPress v2.
+ 
 ### [Version 1.2.8](https://github.com/azurecurve/azrcrv-theme-switcher/releases/tag/v1.2.8)
  * Update plugin header and readme for compatibility with ClassicPress Directory v2.
  * Update Update Manager to version 2.5.0.
